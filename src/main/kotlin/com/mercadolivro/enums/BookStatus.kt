@@ -2,7 +2,7 @@ package com.mercadolivro.enums
 
 enum class BookStatus {
   ACTIVE,
-  SOULD,
+  SOLD,
   CANCELED,
   DELETED
 }

@@ -13,12 +13,10 @@ class PurchaseService(
 ) {
   fun create(purchaseModel: PurchaseModel) {
     purchaseRepository.save(purchaseModel)
-    println("To aqui no PurchaseService (create) => $purchaseModel")
     applicationEventPublisher.publishEvent(PurchaseEvent(this, purchaseModel))
   }
 
   fun update(purchaseModel: PurchaseModel) {
-    println("To aqui no PurchaseService (update) => $purchaseModel")
     purchaseRepository.save(purchaseModel)
   }
 }

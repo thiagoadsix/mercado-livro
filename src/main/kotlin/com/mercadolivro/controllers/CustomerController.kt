@@ -5,15 +5,16 @@ import com.mercadolivro.controllers.request.PutCustomerRequest
 import com.mercadolivro.controllers.response.CustomerResponse
 import com.mercadolivro.extensions.toCustomerModel
 import com.mercadolivro.extensions.toResponse
+import com.mercadolivro.security.annotations.UserCanOnlyAccessTheirOwnResource
 import com.mercadolivro.services.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("customer")
+@RequestMapping("customers")
 class CustomerController(
-  val customerService: CustomerService
+  private val customerService: CustomerService
 ) {
 
   @GetMapping
@@ -22,6 +23,7 @@ class CustomerController(
   }
 
   @GetMapping("/{id}")
+  @UserCanOnlyAccessTheirOwnResource
   fun get(@PathVariable id: Int): CustomerResponse {
     return customerService.findById(id).toResponse()
   }
